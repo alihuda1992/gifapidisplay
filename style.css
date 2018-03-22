@@ -1,0 +1,26 @@
+
+
+#pillcontainer{
+    font-size: 22px;
+    color:white;
+}
+
+.pill:hover{
+    background:black;
+}
+.pill:active{
+    background:black;
+    color:white
+}
+
+p {
+    font-size: 22px;
+    margin-left: 15px;
+}
+
+
+body {
+    background: url(https://www.toptal.com/designers/subtlepatterns/patterns/xv.png);
+color:Black;
+font-family: 'Raleway', sans-serif;
+}
