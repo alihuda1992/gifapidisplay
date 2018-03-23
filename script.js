@@ -9,53 +9,47 @@ $(document).ready(function () {
         $("#pillcontainer").append('<li role="presentation" class="pill" value="' + category[i] + '"><a>' + category[i] + '</a></li>')
     }
     //onclick event to add your own fruit
-    $("#fruitbutton").click(function() {
-     $("#container").html("");
-    category.push($(".form-control").val());
-    $("#pillcontainer").append('<li role="presentation" class="pill" value="' + $(".form-control").val() + '"><a>' + $(".form-control").val() + '</a></li>')
-    $ ("#container").append('<img src =' + $(".form-control").val()  + '>')
-      //AJAX call and for loop to print images from response of call
-    var xhr = $.get("https://api.giphy.com/v1/gifs/search?q=" + $(".form-control").val() + "&api_key=ZK9v6ITzVl3nm5Mz8iPUch43jDnk5b1v&limit=10");
-    xhr.done(function (response) {
-        for (var i = 0; i < response.data.length; i++) {
+    $("#fruitbutton").click(function () {
+        $("#container").html("");
+        category.push($(".form-control").val());
+        $("#pillcontainer").append('<li role="presentation" class="pill" value="' + $(".form-control").val() + '"><a>' + $(".form-control").val() + '</a></li>')
+        $("#container").append('<img src =' + $(".form-control").val() + '>')
+        //AJAX call and for loop to print images from response of call
+        var xhr = $.get("https://api.giphy.com/v1/gifs/search?q=" + $(".form-control").val() + "&api_key=ZK9v6ITzVl3nm5Mz8iPUch43jDnk5b1v&limit=10");
+        xhr.done(function (response) {
+            for (var i = 0; i < response.data.length; i++) {
 
-            $("#container").append('<img src =' + response.data[i].images.downsized.url + '>')
-        }
-           
+                $("#container").append('<img src =' + response.data[i].images.downsized.url + '>')
+            }
 
-       
-    //close ajax 
+            //close ajax 
+        });
+
     });
 
-});
-
-
-
-
-
-
+    //onclick event for when you click pre-populated fruit
     $(".pill").click(function () {
         var keyword = $(this).attr("value");
         //Clear out the HTML element 
         $("#container").html("");
 
-        //AJAX call and for loop to print images from response of call
+        //Ajax call and for loop to print images from response of call
         var xhr = $.get("https://api.giphy.com/v1/gifs/search?q=" + keyword + "&api_key=ZK9v6ITzVl3nm5Mz8iPUch43jDnk5b1v&limit=10");
         xhr.done(function (response) {
             for (var i = 0; i < response.data.length; i++) {
 
                 $("#container").append('<img src =' + response.data[i].images.downsized.url + '>')
             }
-        //close ajax 
+            //close  
         });
 
 
 
-    //close onclick function
+        //close onclick function
     });
 
 
 
 
-//close document.ready
+    //close document.ready
 });
