@@ -11,35 +11,32 @@ $(document).ready(function () {
         $("#pillcontainer").append('<li role="presentation" class="pill" value="' + category[i] + '"><a>' + category[i] + '</a></li>')
     }
 
-
-
-
-
-
+   
 
 
     $(".pill").click(function () {
-        console.log($(this).attr("value"));
-        var xhr = $.get("https://api.giphy.com/v1/gifs/search?q=" + $(this).attr("value") + "&api_key=ZK9v6ITzVl3nm5Mz8iPUch43jDnk5b1v&limit=10");
-        xhr.done(function (data) { 
+        var keyword = $(this).attr("value");
+        //Clear out the HTML element 
+        $("#container").html("");
 
-          //  $("#container").append($(this).attr(images.downsized_still));
+        //AJAX call and for loop to print images from response of call
+        var xhr = $.get("https://api.giphy.com/v1/gifs/search?q=" + keyword + "&api_key=ZK9v6ITzVl3nm5Mz8iPUch43jDnk5b1v&limit=10");
+        xhr.done(function (response) {
+            console.log("success got data", response);
+            for (var i = 0; i < response.data.length; i++) {
 
-            console.log($(this))
-
-         });
-
-        // $("#container").append ????
-
-
-    })
-
-
+                $("#container").append('<img src =' + response.data[i].images.original.url + '>')
+            }
+        //close ajax 
+        });
 
 
 
+    //close onclick function
+    });
+
+
+
+
+//close document.ready
 });
-
-
-
-
